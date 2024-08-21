@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+
+header.cabecalho {
+    background-color: var(--color-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.container__botao {
+    display: none;
+}
+
+.cabecalho__menu-hamburguer {
+    display: inline-block; /* Para funcionar como uma palavra (inline) mas permitindo setar largura e altura*/
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/Menu.svg);    
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container__botao:checked~.container__rotulo > .cabecalho__menu-hamburguer { /* O container botao é a clase do input, logo ele tem que estar checked */
+    background-image: url(../images/MenuAberto.svg);
+}
+
+.container__botao:checked~.container__rotulo {
+    background: var(--color-blue-degrade);
+}
+
+
+.container__botao:checked~.lista-menu { /* ~ é um símbolo de combinador css */
+    display: block;
+}
+
+.lista-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 60vw;
+}
+
+.container__imagem {
+    padding: 1em;
+}
+
+.lista-menu__titulo,
+.lista-menu__item {
+    padding: 1em;
+    background-color: var(--color-white);
+}
+
+.lista-menu__titulo {
+    color: var(--color-gold);
+    font-weight: 700;
+}
+
+.lista-menu__link {
+    background: var(--color-blue-degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+}
+
+.opcoes, .container__titulo, .container__texto  {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+    .cabecalho__menu-hamburguer,
+    .container__imagem-favorito {
+        display: none;
+    }
+    
+    .container__titulo, .container__titulo--negrito {
+        font-family: var(--font-secundary);
+        font-size: 30px;
+    }
+    
+    .container__titulo {
+        display: block;
+        font-weight: 400;
+    }
+
+    .container__titulo--negrito {
+        font-weight: 700;
+    }
+
+    .opcoes {
+        display: flex;
+    }
+
+    .opcoes__botao {
+        display: none;
+    }
+
+    .opcoes__botao:checked ~ .lista-menu {
+        display: block;
+        width: auto;
+    }
+
+    .opcoes__botao:checked ~ .opcoes__rotulo > .opcoes__item {
+        background: var(--color-blue-degrade);
+        color: var(--color-white);
+    }
+
+    .opcoes__item {
+        padding: 2em 1em;
+        text-transform: uppercase;
+    }
+
+    .opcoes__link {
+        color: var(--color-black);
+        text-decoration: none;
+    }
+
+    .lista-menu__item:hover {
+        background: var(--color-blue-degrade);
+    }
+/*  */
+    .lista-menu__item:hover > .lista-menu__link {
+        -webkit-text-fill-color: var(--color-white); /*  no início do projeto, para colocar essa cor azul, aquele degradê, na fonte, tivemos que adicionar um background e depois associar ele à fonte. Quando usamos o -webkit-text-fill-color, tínhamos definido como transparente, então, ele não aplicava cor nenhuma além daquele background que estava aplicado. */
+        text-decoration: none;
+    }
+
+
+}
+
+
+@media screen and (min-width: 1728px) {
+
+    .cabecalho {
+        padding: 0 2em;
+    }
+
+    .opcoes {
+        margin-right: auto;
+    }
+
+    .container__link {
+        display: flex;
+        align-items: center;
+        color: var(--color-black);
+        text-decoration: none;
+    }
+
+    .container__texto {
+        display: block;
+    }
+}
